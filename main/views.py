@@ -18,7 +18,7 @@ class FollowerView(CreateView):
 
     def form_valid(self, form):
         form.save()
-        # send(form.instance.email)
+        # send(form.instance.email)   #для моментальной отправки письма о подписке на рассылку
         send_message_email.delay(form.instance.email)
         return super(FollowerView, self).form_valid(form)
 

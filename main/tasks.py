@@ -1,4 +1,7 @@
+# coding=utf-8
 from django.core.mail import send_mail
+from django.template import loader
+
 from send_email.celerys import app
 
 from .service import send
@@ -14,9 +17,16 @@ def send_message_email(user_email):
 def send_beat_email():
     for follower in Follower.objects.all():
         send_mail(
-            'Hello',
-            "Good morning",
+            'Спасибо за подписку',
+            '',
             'gkf5051@gmail.com',
             [follower.email],
             fail_silently=False,
+            html_message=loader.render_to_string(
+                'main/mail.html',
+                {
+                    'user_email': follower.email,
+                    'subject': 'Благодарим вас за подписку и дарим вам промокод со скидкой 90% на всю нашу продукцию',
+                }
+            )
         )
