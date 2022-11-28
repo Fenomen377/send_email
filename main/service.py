@@ -7,17 +7,18 @@ from main.models import Follower
 
 
 def send(user_email):
-    send_mail(
-        'Спасибо за подписку',
-        '',
-        'gkf5051@gmail.com',
-        [user_email],
-        fail_silently=False,
-        html_message=loader.render_to_string(
-            'main/mail.html',
-            {
-                'user_email': user_email,
-                'subject':  'Благодарим вас за подписку и дарим вам промокод со скидкой 90% на всю нашу продукцию',
-            }
+    for follower in Follower.objects.all():
+        send_mail(
+            'Спасибо за подписку',
+            '',
+            'gkf5051@gmail.com',
+            [user_email],
+            fail_silently=False,
+            html_message=loader.render_to_string(
+                'main/mail.html',
+                {
+                    'user_email': follower.name,
+                    'subject': 'Благодарим вас за подписку и дарим вам промокод со скидкой 90% на всю нашу продукцию',
+                }
+            )
         )
-    )

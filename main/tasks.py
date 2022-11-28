@@ -25,7 +25,7 @@ def send_beat_email():
             html_message=loader.render_to_string(
                 'main/mail.html',
                 {
-                    'user_email': follower.email,
+                    'user_email': follower.name,
                     'subject': 'Благодарим вас за подписку и дарим вам промокод со скидкой 90% на всю нашу продукцию',
                 }
             )
