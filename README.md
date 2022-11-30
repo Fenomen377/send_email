@@ -7,7 +7,7 @@
 <img src="screenshots/screen_follow.png">
 <h2>Рассылка с использованием html-шаблона и переменными (имя подписчика)</h2>
 <img src="screenshots/screen_follow_message.png">
-<h2>Отложенная рассылка, реализованная с помощью celery(5 минут)</h2>
+<h2>Отложенная рассылка, реализованная с помощью celery и redis(5 минут)</h2>
 <p>Для старта отложенной рассылки необходимо применить команды:</p>
 <p>python manage.py runserver  </p>
 <p>celery -A send_email beat -l info</p>
